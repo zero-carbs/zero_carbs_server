@@ -1,0 +1,35 @@
+name = "zero_carbs_server"
+compatibility_date = "2023-12-01"
+node_compat = true
+
+[[hyperdrive]]
+# Supabase transaction DB
+binding = ""
+id = ""
+localConnectionString = ""
+
+[vars]
+# Make sure the live keys are set before deploying
+#
+CLERK_SECRET_KEY=""
+CLERK_PUBLISHABLE_KEY=""
+# SQUARE_APPLICATION_ID=""
+# SQUARE_ACCESS_TOKEN=""
+# SQUARE_ENVIRONMENT="sandbox"
+# SQUARE_LOCATION_ID=""
+
+[env.development.vars]
+CLERK_SECRET_KEY=""
+CLERK_PUBLISHABLE_KEY=""
+SQUARE_ACCESS_TOKEN=""
+SQUARE_ENVIRONMENT="sandbox"
+SQUARE_LOCATION_ID=""
+
+[[env.development.hyperdrive]]
+binding = ""
+id = ""
+localConnectionString = ""
+
+[env.production.vars]
+CLERK_SECRET_KEY=""
+CLERK_PUBLISHABLE_KEY=""

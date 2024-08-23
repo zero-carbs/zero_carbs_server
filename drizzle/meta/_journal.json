@@ -1,0 +1,27 @@
+{
+  "version": "5",
+  "dialect": "pg",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1714513811198,
+      "tag": "0000_nostalgic_baron_strucker",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1723727795826,
+      "tag": "0001_broad_oracle",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1724175362834,
+      "tag": "0002_gray_redwing",
+      "breakpoints": true
+    }
+  ]
+}

@@ -9,6 +9,7 @@ import { settings } from "./api/settings";
 import { user } from "./api/user";
 import { exportData } from "./api/export";
 import { subscribe } from "./api/subscribe";
+import { contact } from "./api/contact";
 
 const app = new Hono();
 
@@ -23,5 +24,6 @@ app.route("/api", settings);
 app.route("/api", user);
 app.route("/api", exportData);
 app.route("/api", subscribe);
+app.route("/api", contact);
 
 export default app;

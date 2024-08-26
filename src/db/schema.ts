@@ -77,6 +77,17 @@ export const users = pgTable("users", {
   subscriptionCanceledDate: text("subscriptionCanceledDate"),
 });
 
+export const contact = pgTable("contact", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  userId: varchar("userId", { length: 100 }),
+  emailAddress: text("emailAddress").notNull(),
+  type: text("type").notNull(),
+  contactMessage: varchar("contactMessage", { length: 550 }).notNull(),
+  date: date("date").notNull(),
+  status: text("status").notNull(),
+  open: boolean("open").default(true).notNull(),
+});
+
 export const sources = pgTable("sources", {
   id: uuid("id").defaultRandom().primaryKey(),
   userId: varchar("userId", { length: 100 }),
@@ -144,6 +155,8 @@ export const insertListingFormSchema = createInsertSchema(listing);
 export const selectItemFormSchema = createSelectSchema(item);
 export const insertItemFormSchema = createInsertSchema(item);
 export const selectUserSettingsSchema = createSelectSchema(settings);
+export const insertContactFormSchema = createInsertSchema(contact);
+export const selectContactFormSchema = createSelectSchema(contact);
 
 // ── Typescript types ─────────────────────────────────────────
 export type DbPurchaseSelect = InferSelectModel<typeof purchase>;
@@ -154,3 +167,5 @@ export type DbItemSelect = InferSelectModel<typeof item>;
 export type DbItemInsert = InferInsertModel<typeof item>;
 export type DbUserSettings = InferSelectModel<typeof settings>;
 export type DbSources = InferSelectModel<typeof sources>;
+export type DbContactFormSelect = InferSelectModel<typeof contact>;
+export type DbContactFormInsert = InferInsertModel<typeof contact>;

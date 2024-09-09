@@ -13,6 +13,7 @@ export const createHonoWithDB = () => {
       SQUARE_ENVIRONMENT: ET;
       SQUARE_LOCATION_ID: string;
       SQUARE_PLAN_VARIATION_ID: string;
+      LCS: string | undefined
     };
     Variables: {
       db: NodePgDatabase<typeof schema>;
@@ -26,7 +27,9 @@ export const createHonoWithDB = () => {
 
   app.use(async (c, next) => {
     const client = new Client({
-      connectionString: c.env["zerocarbsdb-transaction"].connectionString,
+      connectionString: !c.env.LCS
+        ? c.env["zerocarbsdb-transaction"].connectionString
+        : c.env.LCS,
     });
 
     await client.connect();

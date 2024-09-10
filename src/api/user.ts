@@ -5,7 +5,6 @@ import { getUser } from "../lib/getUser";
 
 const user = createHonoWithDB();
 
-// user.use(clerkMiddleware());
 user.post("/create-user", async (c) => {
   try {
     const cAuth = c.get("clerk");

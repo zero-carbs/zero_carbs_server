@@ -4,7 +4,8 @@
     "dev-remote": "wrangler dev src/index.ts --remote -e development",
     "dev-prod": "wrangler dev src/index.ts --remote -e production",
     "deploy": "wrangler deploy --minify src/index.ts",
-    "migrate": "drizzle-kit generate:pg --schema=./src/db/schema.ts && node -r esbuild-register ./src/db/migrate"
+    "migrate": "drizzle-kit generate:pg --schema=./src/db/schema.ts && node -r esbuild-register ./src/db/migrate",
+    "docker": "drizzle-kit generate:pg --schema=./src/db/schema.ts && node -r esbuild-register ./src/db/migrate && wrangler dev src/index.ts --ip 0.0.0.0"
   },
   "dependencies": {
     "@haverstack/axios-fetch-adapter": "^0.12.0",

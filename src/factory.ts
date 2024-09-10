@@ -4,6 +4,8 @@ import { Client } from "pg";
 import * as schema from "./db/schema";
 import { Environment } from "square";
 import type { Environment as ET } from "square";
+import { HTTPException } from "hono/http-exception";
+import { nly, uuu } from "./utils/nly";
 
 export const createHonoWithDB = () => {
   const app = new Hono<{
@@ -13,7 +15,8 @@ export const createHonoWithDB = () => {
       SQUARE_ENVIRONMENT: ET;
       SQUARE_LOCATION_ID: string;
       SQUARE_PLAN_VARIATION_ID: string;
-      LCS: string | undefined
+      LCS: string | undefined;
+      HOST_ORIGIN: string;
     };
     Variables: {
       db: NodePgDatabase<typeof schema>;
@@ -24,6 +27,18 @@ export const createHonoWithDB = () => {
       SQUARE_PLAN_VARIATION_ID: string;
     };
   }>();
+
+  app.use(async (c, next) => {
+      const referer = c.req.header("Referer");
+      if (!referer?.includes(c.env.HOST_ORIGIN)) {
+        throw new HTTPException(406, {
+          message:
+            "Things like this are the reason other people don't really like you very much.",
+        });
+      }
+
+    await next();
+  });
 
   app.use(async (c, next) => {
     const client = new Client({

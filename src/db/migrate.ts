@@ -10,7 +10,6 @@ const pool = new Pool({
 });
 
 const db = drizzle(pool);
-// console.log('db:', db)
 
 async function main() {
   console.log("Migration started...");
